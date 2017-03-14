@@ -2,9 +2,11 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki sovellukseeni](http://pesjoona.users.cs.helsinki.fi/pelit/)
+* [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Lista kotoa löytyvistä lautapeleistä ja niihin liittyvistä strategioista.
+Kirjautumispalvelu käyttäjille ja mahdollisuus liittyä lautapeli clubeihin
+suosikki lautapeli, strategia, tyyli.
