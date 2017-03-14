@@ -1,4 +1,8 @@
 1. Johdanto
 
+Järjestelmän ideana on tarjota alusta lautapeli fanaatikoille lisätä omat suosikki pelinsä ja strategiansa nettisivulle, sekä liittyä erilaisiin peliryhmiin. Nettisivu on toteutettu PHP kielellä käyttäen
+PostgreSQL-tietokantaa laitoksen user-palvelimen alla. Ohjelmisto luonnollisesti vaatii tietyn tietokannan eikä toimi satunnaisella tietokannalla.
 
 2. Yleiskuva
+
+--- TO BE DONE --- 
