@@ -9,4 +9,9 @@ Yleisiä linkkejä:
 
 Lista kotoa löytyvistä lautapeleistä ja niihin liittyvistä strategioista.
 Kirjautumispalvelu käyttäjille ja mahdollisuus liittyä lautapeli clubeihin
-suosikki lautapeli, strategia, tyyli.
+clubien ja käyttäjien suosikki lautapelit, lautapelityylit näkyviin.
+Luomisoikeudet lautapeleille, lautapelityyleille ja strategioille käyttäjille.
+Clubien luonti oikeus adminilla.
+Membership on clubien ja jäsenten välinen liitostaulu
+Lautapelit on rajoitettu vain yhteen tyyliin.
+
