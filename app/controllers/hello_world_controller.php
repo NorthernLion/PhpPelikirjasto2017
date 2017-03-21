@@ -11,4 +11,8 @@
       // Testaa koodiasi täällä
       View::make('helloworld.html');
     }
+    
+    public static function lista(){
+        View::make('game_list.html');
+    }
   }
