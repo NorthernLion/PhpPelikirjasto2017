@@ -20,7 +20,7 @@ Nettisivu lautapelien ja strategioiden kirjaamiseen. vierailijat voivat rekister
 * [Peli: Modify](http://pesjoona.users.cs.helsinki.fi/pelit/game/modify/1)
 # Käyttäjä
 * [Käyttäjä: Show](http://pesjoona.users.cs.helsinki.fi/pelit/user/1)
-* [Käyttäjä: Create](http://pesjoona.users.cs.helsinki.fi/pelit/create)
+* [Käyttäjä: Create](http://pesjoona.users.cs.helsinki.fi/pelit/user/create)
 # Strategia
 * [Strategia: Show](http://pesjoona.users.cs.helsinki.fi/pelit/strategy/1)
 * [Strategia: List](http://pesjoona.users.cs.helsinki.fi/pelit/strategy)
