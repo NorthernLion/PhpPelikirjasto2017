@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lautapelit</h1>
+
+<p>
+    <a href="#" class="btn btn-success">Strategioiden listaus</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Nimi</th>
+        <th>Julkaisuaika</th>
+        <th>Peli</th>
+        <th>Julkaisija</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Listataan pelit tähän -->
+    <tr>
+        <td><a href="#">FlushPushStrat</a></td>
+        <td>2007-20-12</td>
+        <td>Age of Empires II</td>
+        <td>Pekka</td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}
