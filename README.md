@@ -27,9 +27,9 @@ Nettisivu lautapelien ja strategioiden kirjaamiseen. vierailijat voivat rekister
 * [Strategia: Create](http://pesjoona.users.cs.helsinki.fi/pelit/strategy/create)
 * [Strategia: Modify](http://pesjoona.users.cs.helsinki.fi/pelit/strategy/modify/1)
 # Clubi
-* [Club: Show](http://pesjoona.users.cs.helsinki.fi/pelit/)
-* [Club: List](http://pesjoona.users.cs.helsinki.fi/pelit/)
-* [Club: Create](http://pesjoona.users.cs.helsinki.fi/pelit/)
+* [Club: Show](http://pesjoona.users.cs.helsinki.fi/pelit/club/1)
+* [Club: List](http://pesjoona.users.cs.helsinki.fi/pelit/club)
+* [Club: Create](http://pesjoona.users.cs.helsinki.fi/pelit/club/create)
 # Membership
 
 Ei nettisivuja membershippiin liittyen.
