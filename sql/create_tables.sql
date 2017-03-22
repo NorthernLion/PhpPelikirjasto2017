@@ -4,10 +4,11 @@ CREATE TABLE Player(
   password varchar(50) NOT NULL,
   admin boolean DEFAULT FALSE
 );
+
 CREATE TABLE Club(
   id SERIAL PRIMARY KEY,
   name varchar(50) NOT NULL,
-  created DATE,
+  created DATE
 );
 
 CREATE TABLE Game(
@@ -18,12 +19,12 @@ CREATE TABLE Game(
   description varchar(400)
 );
 
-
 CREATE TABLE Membership(
   id SERIAL PRIMARY KEY,
   player_id INTEGER REFERENCES Player(id),
   club_id INTEGER REFERENCES Club(id)
 );
+
 CREATE TABLE Strategy(
   id SERIAL PRIMARY KEY,
   player_id INTEGER REFERENCES Player(id),
