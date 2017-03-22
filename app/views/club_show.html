@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Clubin nimi ja vuosi ja jäsenten määrä</h1>
+<h1>Clubin nimi</h1>
 <p>
-    Clubin suosikki peli
+    <button class="btn btn-danger">Eroa Klubista</button>
+    <button class="btn btn-default"">Liity Klubiin</button>
+</p>
+<p>
+<li>vuosi</li>
+<li>jäsenten määrä</li>
+<li>suosikkipeli</li>
+
     Clubin Jäsenet:
 </p>
 
-<p>
-    Liity klubiin/Lähde klubista (sessioninista)
 
-    <button class="btn btn-danger">Eroa Klubista</button> <a href="#" class="btn btn-default">Liity Klubiin</a>
-</p>
 
 
 <table class="table table-striped table-bordered">
@@ -23,7 +26,7 @@
 
     <tbody>
     <tr>
-        <td>Pekka</td>
+        <td><a href="#">MPekka</a></td>
         <td><a href="#">Minesweepperi</a></td>
 
     </tr>

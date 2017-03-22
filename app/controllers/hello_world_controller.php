@@ -4,7 +4,7 @@
 
         public static function index(){
           // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-          echo 'Tämä on etusivu!';
+          View::make('home.html');
         }
 
       public static function sandbox(){
@@ -17,6 +17,10 @@
       }
 
       // Omat !
+      public static function login(){
+          View::make('login.html');
+      }      
+      
 
       //Klubi
 
@@ -25,11 +29,11 @@
       }
 
       public static function club_list(){
-          View::make('club_list');
+          View::make('club_list.html');
       }
 
       public static function club_show(){
-          View::make('club_show');
+          View::make('club_show.html');
       }
 
       //Peli
@@ -53,7 +57,7 @@
       //Käyttäjä
 
       public static function player_create(){
-          View::make('game_list.html');
+          View::make('player_create.html');
       }
 
       public static function player_show(){
@@ -75,6 +79,6 @@
       }
 
       public static function strategy_create(){
-          View::make('strategy_list.html');
+          View::make('strategy_create.html');
       }
   }

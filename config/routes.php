@@ -17,6 +17,11 @@
     $routes->get('/login', function() {
         HelloWorldController::login();
     });
+    
+    $routes->get('/index', function() {
+        HelloWorldController::index();
+    });
+    
 
 //Peli
 
@@ -60,7 +65,7 @@ $routes->get('/strategy/create', function() {
     HelloWorldController::strategy_create();
 });
 
-$routes->get('/game/modify/1', function() {
+$routes->get('/strategy/modify/1', function() {
     HelloWorldController::strategy_modify();
 });
 
@@ -70,11 +75,11 @@ $routes->get('/club', function() {
     HelloWorldController::club_list();
 });
 
-$routes->get('/strategy/1', function() {
+$routes->get('/club/1', function() {
     HelloWorldController::club_show();
 });
 
-$routes->get('/strategy/create', function() {
+$routes->get('/club/create', function() {
     HelloWorldController::club_create();
 });
 
