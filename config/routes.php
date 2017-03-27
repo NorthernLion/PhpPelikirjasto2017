@@ -24,63 +24,61 @@
     
 
 //Peli
+$routes->post('/game/new', function() {
+    HelloWorldController::game_create();
+});
 
 $routes->get('/game', function() {
     HelloWorldController::game_list();
 });
 
-$routes->get('/game/1', function() {
+$routes->get('/game/:id', function() {
     HelloWorldController::game_show();
 });
 
-$routes->get('/game/create', function() {
-    HelloWorldController::game_create();
-});
-
-$routes->get('/game/modify/1', function() {
+$routes->get('/game/:id/edit', function() {
     HelloWorldController::game_modify();
 });
 
 //Käyttäjä
-
-$routes->get('/user/1', function() {
-    HelloWorldController::player_show();
-});
-
-$routes->get('/user/create', function() {
+$routes->post('/user/new', function() {
     HelloWorldController::player_create();
 });
 
+$routes->get('/user/:id', function() {
+    HelloWorldController::player_show();
+});
+
 //Strategia
+$routes->post('/strategy/new', function() {
+    HelloWorldController::strategy_create();
+});
 
 $routes->get('/strategy', function() {
     HelloWorldController::strategy_list();
 });
 
-$routes->get('/strategy/1', function() {
+$routes->get('/strategy/:id', function() {
     HelloWorldController::strategy_show();
 });
 
-$routes->get('/strategy/create', function() {
-    HelloWorldController::strategy_create();
-});
-
-$routes->get('/strategy/modify/1', function() {
+$routes->get('/strategy/:id/edit', function() {
     HelloWorldController::strategy_modify();
 });
 
 //Klubi
+$routes->post('/club/new', function() {
+    HelloWorldController::club_create();
+});
 
 $routes->get('/club', function() {
     HelloWorldController::club_list();
 });
 
-$routes->get('/club/1', function() {
+$routes->get('/club/:id', function() {
     HelloWorldController::club_show();
 });
 
-$routes->get('/club/create', function() {
-    HelloWorldController::club_create();
-});
+
 
 
