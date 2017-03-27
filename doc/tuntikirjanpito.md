@@ -8,6 +8,6 @@ Päivä | Aloitus | Lopetus | Tunnit | Kuvaus
 21.03.2017 | 19:00 | 21:30 | 08:45 | Viewsien suunnittelu ja luonti, controllerin ja Routes.php:n muokkaus kaaviot ynnämuut.
 22.03.2017 | 09:30 | 11:00 | 10:15 | Viewisien suunnittelu jatkuu, sql tablet
 22.03.2017 | 14:30 | 15:45 | 11:30 | Laitoksen koneella conffaus tarkistus ja servulle laittaminen
-20.03.2017 | 17:00 | - | - | -
+20.03.2017 | 17:00 | 21:00 | 15:30 | Modelsien luonti luokille, All ja Show metodien luominen Modelsissa, save, post, formit etc.
 20.03.2017 | 17:00 | - | - | -
 
