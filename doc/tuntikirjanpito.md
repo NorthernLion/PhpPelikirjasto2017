@@ -9,5 +9,10 @@ Päivä | Aloitus | Lopetus | Tunnit | Kuvaus
 22.03.2017 | 09:30 | 11:00 | 10:15 | Viewisien suunnittelu jatkuu, sql tablet
 22.03.2017 | 14:30 | 15:45 | 11:30 | Laitoksen koneella conffaus tarkistus ja servulle laittaminen
 27.03.2017 | 17:00 | 21:00 | 15:30 | Modelsien luonti luokille, All ja Show metodien luominen Modelsissa, save, post, formit etc.
-28.03.2017 | 11:00 | - | - | -
-
+28.03.2017 | 11:00 | 12:15 | 16:45 | Strategy viewsien muokkaus
+28.03.2017 | 14:00 | 16:00 | 18:45 | Korjausta ja pushausta palvelimelle 
+28.03.2017 | 11:00 | 12:15 | - | -
+28.03.2017 | 11:00 | 12:15 | - | -
+28.03.2017 | 11:00 | 12:15 | - | -
+28.03.2017 | 11:00 | 12:15 | - | -
+28.03.2017 | 11:00 | 12:15 | - | -
