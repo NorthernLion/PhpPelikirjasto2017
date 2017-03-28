@@ -10,6 +10,7 @@
       public static function sandbox(){
           // Testaa koodiasi täällä
           View::make('helloworld.html');
+              Kint::dump($games);
       }
 
       public static function lista(){
