@@ -2,14 +2,14 @@
 {% block content %}
 <h1>Lisää uusi peli sivulle</h1>
 
-<form method="post" action="{{base_path}}/game">
+<form method="post" action="{{base_path}}/game_create">
 
     <div class="form-group">
         <label>Nimi</label>
         <input type="text" name="name" class="form-control">
     </div>
     <div class="form-group">
-        <label>Julkaisupäivä</label>
+        <label>Julkaisupäivä (muotoa YYYY-MM-DD)</label>
         <input type="text" name="published" class="form-control">
     </div>
     <div class="form-group">

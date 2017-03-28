@@ -24,59 +24,71 @@
     
 
 //Peli
-$routes->post('/game/new', function() {
-    HelloWorldController::game_create();
+    
+$routes->post('/game_create', function(){
+  GameController::store();
+});
+
+$routes->get('/game/new', function() {
+    GameController::game_create();
 });
 
 $routes->get('/game', function() {
-    HelloWorldController::game_list();
+    GameController::game_list();
 });
 
-$routes->get('/game/:id', function() {
-    HelloWorldController::game_show();
+$routes->get('/game/:id', function($id) {
+    GameController::game_show($id);
 });
 
-$routes->get('/game/:id/edit', function() {
-    HelloWorldController::game_modify();
+$routes->get('/game/:id/edit', function($id) {
+    GameController::game_modify($id);
 });
 
 //Käyttäjä
-$routes->post('/user/new', function() {
-    HelloWorldController::player_create();
+$routes->post('/user_create', function(){
+  PlayerController::store();
 });
 
-$routes->get('/user/:id', function() {
-    HelloWorldController::player_show();
+$routes->get('/user/new', function() {
+    PlayerController::player_create();
+});
+
+$routes->get('/user/:id', function($id) {
+    PlayerController::player_show($id);
 });
 
 //Strategia
+
+$routes->post('/strategy_create', function(){
+  StrategyController::store();
+});
+
 $routes->post('/strategy/new', function() {
-    HelloWorldController::strategy_create();
+    StrategyController::strategy_create();
 });
 
 $routes->get('/strategy', function() {
-    HelloWorldController::strategy_list();
+    StrategyController::strategy_list();
 });
 
-$routes->get('/strategy/:id', function() {
-    HelloWorldController::strategy_show();
+$routes->get('/strategy/:id', function($id) {
+    StrategyController::strategy_show($id);
 });
 
 $routes->get('/strategy/:id/edit', function() {
-    HelloWorldController::strategy_modify();
+    StrategyController::strategy_modify();
 });
 
 //Klubi
-$routes->post('/club/new', function() {
-    HelloWorldController::club_create();
-});
+
 
 $routes->get('/club', function() {
-    HelloWorldController::club_list();
+    ClubController::club_list();
 });
 
-$routes->get('/club/:id', function() {
-    HelloWorldController::club_show();
+$routes->get('/club/:id', function($id) {
+    ClubController::club_show($id);
 });
 
 

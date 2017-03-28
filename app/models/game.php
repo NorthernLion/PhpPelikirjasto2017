@@ -8,6 +8,10 @@ class Game extends BaseModel{
     {
         parent::__construct($attributes);
     }
+    
+    public function games() {
+        return $this->hasMany('Strategy');
+    }
 
     public static function all(){
 
@@ -53,15 +57,13 @@ class Game extends BaseModel{
     }
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Game(name, published, publisher, description)) 
-        VALUES (:name, :published, :publisher, :description) RETURNING id');
-        
-        $query->execute(array('name' => $this->name, 'published' => $this->published, 'publisher' => $this->publisher,
-         'description' => $this->description));
-
-         $row = $query->fetch();
-
-         $this->id = $row['id'];
+    $query = DB::connection()->prepare('INSERT INTO Game (name, published, publisher, description) VALUES (:name, :published, :publisher, :description) RETURNING id');
+    
+    $query->execute(array('name' => $this->name, 'published' => $this->published, 'publisher' => $this->publisher, 'description' => $this->description));
+    
+    $row = $query->fetch();
+    
+    $this->id = $row['id'];
     }
 
 

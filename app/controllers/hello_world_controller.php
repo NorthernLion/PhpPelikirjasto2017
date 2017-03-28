@@ -13,9 +13,7 @@
               Kint::dump($games);
       }
 
-      public static function lista(){
-          View::make('game_list.html');
-      }
+
 
       // Omat !
       public static function login(){

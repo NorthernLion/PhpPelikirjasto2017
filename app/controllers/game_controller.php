@@ -10,13 +10,12 @@ class GameController extends BaseController{
         $params = $_POST;
 
         $game = new Game(array(
-            'id' => $params['id'],
             'name' => $params['name'],
             'published' => $params['published'],
             'publisher' => $params['publisher'],
             'description' => $params['description']
         ));
-
+          
         $game->save();
 
         Redirect::to('/game/' . $game->id, array('message' => 'Peli on lisätty sivustolle'));
@@ -36,7 +35,8 @@ class GameController extends BaseController{
 
     public static function game_show($id){
         $game = Game::find($id);
+        $strategies = Strategy::findBy($id);
 
-        View::make('game_show.html', array('attributes' => $game));
+        View::make('game_show.html', array('game' => $game), array('strategies' => $strategies));
     }
 }

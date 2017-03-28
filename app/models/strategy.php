@@ -2,12 +2,21 @@
 
 class Strategy extends BaseModel{
 
-    public $id, $player_id, $strategy_id, $name, $description, $published;
+    public $id, $player_id, $game_id, $name, $description, $published;
 
     public function __construct($attributes)
     {
         parent::__construct($attributes);
     }
+    
+    public function game() {
+        return $this->belongsTo('Game', 'id');
+    }
+    
+    public function player() {
+        return $this->belongsTo('Player', 'id');
+    }
+
 
     public static function all(){
 
@@ -22,14 +31,36 @@ class Strategy extends BaseModel{
 
             $strategies[] = new Strategy(array(
                 'id' => $row['id'],
+                'player_id' => $row['player_id'],
+                'game_id' => $row['game_id'],
                 'name' => $row['name'],
-                'published' => $row['published'],
-                'publisher' => $row['publisher'],
-                'description' => $row['description']
+                'description' => $row['description'],
+                'published' => $row['published']
             ));
         }
 
         return $strategies;
+    }
+    
+    public static function findBy($game_id){
+        $query = DB::connection()->prepare('SELECT * FROM Strategy WHERE game_id = :game_id');
+        $query->execute(array(':game_id' => $game_id));
+        $rows = $query->fetchAll();
+        $strategies = array();
+
+        foreach ($rows as $row) {
+
+            $strategies[] = new Strategy(array(
+                'id' => $row['id'],
+                'player_id' => $row['player_id'],
+                'game_id' => $row['game_id'],
+                'name' => $row['name'],
+                'published' => $row['published'],
+                'description' => $row['description']
+            ));
+        }
+
+        return $strategies;        
     }
 
     public static function find($id){
@@ -40,9 +71,10 @@ class Strategy extends BaseModel{
         if($row) {
             $strategy = new Strategy(array(
                 'id' => $row['id'],
+                'player_id' => $row['player_id'],
+                'game_id' => $row['game_id'],
                 'name' => $row['name'],
                 'published' => $row['published'],
-                'publisher' => $row['publisher'],
                 'description' => $row['description']
             ));
 

@@ -4,7 +4,7 @@ class StrategyController extends BaseController{
     public static function strategy_list(){
         $strategies = Strategy::all();
 
-        View::make('strategy_list.html', array('strategies' => $strategies));
+        View::make('strategy_list.html', array('strategies' => $strategies), compact('strategies'));
     }
 
     public static function strategy_modify($id){
@@ -14,7 +14,7 @@ class StrategyController extends BaseController{
     public static function strategy_show($id){
         $strategy = Strategy::find($id);
 
-        View::make('strategy_show.html', array('attributes' => $strategy));
+        View::make('strategy_show.html', array('strategy' => $strategy));
     }
 
     public static function strategy_create(){

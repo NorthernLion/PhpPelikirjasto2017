@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{strategy.name}}</h1>
+
+<p>
+    <button class="btn btn-danger">Poista(jos käyttäjän oma strategia) TBD</button>
+    <button class="btn btn-default">Muokkaa TBD</button>
+</p>
+
+
+<ul>
+    <li><strong>Peli:</strong> {{strategy.game_id}}</li>
+    <li><strong>Julkaisupäivä:</strong> {{strategy.published}}</li>
+    <li><strong>Julkaisija:</strong> {{strategy.player_id}}</li>
+</ul>
+
+<p>
+    {{strategy.description}}
+</p>
+{% endblock %}

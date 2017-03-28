@@ -7,7 +7,7 @@
 
     <title>
       {% block title %}
-        Tietokantasovellus
+        Nörttiluola
       {% endblock %}
     </title>
 
@@ -31,15 +31,15 @@
           <span class="icon-bar"></span>
         </button>
         <!-- Sovelluksen nimi -->
-        <a class="navbar-brand" href="index">Pelikirjasto</a>
+        <a class="navbar-brand" href="{{base_path}}/index">Pelikirjasto</a>
       </div>
 
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
           <!-- Navigaation linkit -->
-          <li><a href="game">Pelit</a></li>
-          <li><a href="strategy">Strategiat</a></li>
-          <li><a href="club">Klubit</a></li>
+          <li><a href="{{base_path}}/game">Pelit</a></li>
+          <li><a href="{{base_path}}/strategy">Strategiat</a></li>
+          <li><a href="{{base_path}}/club">Klubit</a></li>
         </ul>
 
 

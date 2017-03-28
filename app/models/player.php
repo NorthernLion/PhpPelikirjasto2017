@@ -8,6 +8,11 @@ class Player extends BaseModel{
     {
         parent::__construct($attributes);
     }
+    
+    public function players() {
+        return $this->hasMany('Strategy');
+    }
+    
 
     public static function all(){
 
