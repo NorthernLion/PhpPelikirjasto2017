@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
+
 <h1>{{game.name}}</h1>
 
 <p>
-    <button class="btn btn-danger">Poista ToBeDone</button>
+    {{forms.destroy_button("#{base_path}/game/#{game.id}/destroy")}}
     <th><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{game.id}}/edit">Muokkaa</a></th>
     <button class="btn btn-success">Lisää Strategia ToBeDone (miten tietää id:n?)</button>
 </p>

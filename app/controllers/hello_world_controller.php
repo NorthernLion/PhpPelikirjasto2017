@@ -8,9 +8,16 @@
         }
 
       public static function sandbox(){
-          // Testaa koodiasi täällä
-          View::make('helloworld.html');
-              Kint::dump($games);
+              $doom = new Game(array(
+                  'name' => 'd',
+                  'published' => 'eilen',
+                  'publisher' => 'id Software',
+                  'description' => 'Boom, boom!'
+              ));
+              $errors = $doom->errors();
+
+              Kint::dump($errors);
+
       }
 
 

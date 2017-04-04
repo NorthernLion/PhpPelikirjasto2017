@@ -14,9 +14,12 @@
 
 // Omat !
 
-    $routes->get('/login', function() {
-        HelloWorldController::login();
-    });
+$routes->get('/login', function(){
+    PlayerController::login();
+});
+$routes->post('/login', function(){
+    PlayerController::handle_login();
+});
     
     $routes->get('/index', function() {
         HelloWorldController::index();
@@ -43,6 +46,14 @@ $routes->get('/game/:id', function($id) {
 
 $routes->get('/game/:id/edit', function($id) {
     GameController::game_modify($id);
+});
+
+$routes->post('/game/:id/edit', function($id){
+    GameController::update($id);
+});
+
+$routes->post('/game/:id/destroy', function($id){
+    GameController::destroy($id);
 });
 
 //Käyttäjä

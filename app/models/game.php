@@ -4,9 +4,9 @@ class Game extends BaseModel{
 
     public $id, $name, $published, $publisher, $description;
 
-    public function __construct($attributes)
-    {
-        parent::__construct($attributes);
+    public function __construct($attributes){
+        parent::construct($attributes);
+        $this->validators = array('validate_name', 'validate_published', 'validate_publisher', 'validate_description');
     }
     
     public function games() {
@@ -64,6 +64,18 @@ class Game extends BaseModel{
     $row = $query->fetch();
     
     $this->id = $row['id'];
+    }
+
+    public function valdiate_name() {
+        $errors = array();
+        if($this->name == '' || $this->name == null){
+            $errors[] = 'Nimi ei saa olla tyhjä!';
+        }
+        if(strlen($this->name) < 3){
+            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
+        }
+
+        return $errors;
     }
 
 

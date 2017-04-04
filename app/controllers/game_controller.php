@@ -15,10 +15,19 @@ class GameController extends BaseController{
             'publisher' => $params['publisher'],
             'description' => $params['description']
         ));
-          
-        $game->save();
 
-        Redirect::to('/game/' . $game->id, array('message' => 'Peli on lisätty sivustolle'));
+        $game = new Game($game);
+        $errors = $game->errors();
+
+        if(count($errors) == 0){
+
+            $game->save();
+
+            Redirect::to('/game/' . $game->id, array('message' => 'Peli on lisätty kirjastoosi!'));
+        }else{
+
+            View::make('game/new.html', array('errors' => $errors, 'attributes' => $game));
+        }
     }
 
     public static function game_list(){
@@ -29,8 +38,7 @@ class GameController extends BaseController{
 
     public static function game_modify($id){
         $game = Game::find($id);
-
-        View::make('game_modify.html');
+        View::make('game/edit.html', array('attributes' => $game));
     }
 
     public static function game_show($id){
@@ -39,4 +47,39 @@ class GameController extends BaseController{
 
         View::make('game_show.html', array('game' => $game), array('strategies' => $strategies));
     }
+
+
+    public static function update($id){
+        $params = $_POST;
+
+        $attributes = array(
+            'id' => $id,
+            'name' => $params['name'],
+      'publisher' => $params['publisher'],
+      'published' => $params['published'],
+      'description' => $params['description']
+    );
+
+    $game = new Game($attributes);
+    $errors = $game->errors();
+
+    if(count($errors) > 0){
+        View::make('game/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    }else{
+        $game->update();
+
+        Redirect::to('/game/' . $game->id, array('message' => 'Peliä on muokattu onnistuneesti!'));
+    }
+  }
+
+
+    public static function destroy($id){
+
+        $game = new Game(array('id' => $id));
+
+        $game->destroy();
+
+        Redirect::to('/game', array('message' => 'Peli on poistettu onnistuneesti!'));
+    }
+
 }

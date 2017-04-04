@@ -2,24 +2,38 @@
 {% block content %}
 <h1>Lisää uusi peli sivulle</h1>
 
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <form method="post" action="{{base_path}}/game_create">
 
     <div class="form-group">
         <label>Nimi</label>
-        <input type="text" name="name" class="form-control">
+        <input type="text" name="name" class="form-control" value="{{game.name}}">
     </div>
+
     <div class="form-group">
         <label>Julkaisupäivä (muotoa YYYY-MM-DD)</label>
-        <input type="text" name="published" class="form-control">
+        <input type="text" name="published" class="form-control" value="{{game.published}}">
     </div>
+
     <div class="form-group">
         <label>Julkaisija</label>
-        <input type="text" name="publisher" class="form-control">
+        <input type="text" name="publisher" class="form-control" value="{{game.publisher}}">
     </div>
+
     <div class="form-group">
         <label>Kuvaus</label>
-        <textarea name="description" class="form-control"></textarea>
+        <textarea name="description" class="form-control">{{game.description}}</textarea>
     </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Lisää</button>
     </div>

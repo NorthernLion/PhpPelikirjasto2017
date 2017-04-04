@@ -1,0 +1,16 @@
+atribuuttien checkaus! -- Error messaget?
+Muut luokat!
+strlen - palauttaa merkkijonon pituuden.
+is_numeric - tarkistaa, onko arvo numeerinen.
+preg_match - tarkistaa, vastaako merkkijono säännöllistä lauseketta.
+
+Modify ja Delete kaikille!
+
+
+Makrot moddify? -- all-- findby-- show?
+
+
+BASECONTROLLER!
+
+
+Check LOGGED IN!!!
