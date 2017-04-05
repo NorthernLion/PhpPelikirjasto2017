@@ -44,13 +44,15 @@
 
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Kirjaudu sisään</a></li>
+          <li><a href="{{base_path}}/login">Kirjaudu sisään</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
     <div id="main-container">
+        {{message}}
+
       <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}
     </div>

@@ -31,9 +31,21 @@ class StrategyController extends BaseController{
             'publisher' => $params['publisher'],
             'description' => $params['description']
         ));
+        
+        $strategy = new Strategy($strategy);
+        $errors = $strategy->errors();
+        
+        if(count($errors) == 0) {
+            
+            $strategy->save();
+            Redirect::to('/strategy/' . $strategy->id, array('message' => 'Strategia on lisätty sivustolle'));
+    
+            
+        } else {
+            View::make('strategy_create.html', array('errors' => $errors, 'strategy' => $strategy));
+        }
 
-        $strategy->save();
+        
 
-        Redirect::to('/strategy/' . $strategy->id, array('message' => 'Strategia on lisätty sivustolle'));
-    }
+        }
 }

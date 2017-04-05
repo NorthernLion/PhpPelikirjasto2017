@@ -45,10 +45,10 @@ $routes->get('/game/:id', function($id) {
 });
 
 $routes->get('/game/:id/edit', function($id) {
-    GameController::game_modify($id);
+    GameController::edit($id);
 });
 
-$routes->post('/game/:id/edit', function($id){
+$routes->post('/game_modify/:id', function($id){
     GameController::update($id);
 });
 
@@ -87,8 +87,16 @@ $routes->get('/strategy/:id', function($id) {
     StrategyController::strategy_show($id);
 });
 
-$routes->get('/strategy/:id/edit', function() {
-    StrategyController::strategy_modify();
+$routes->get('/strategy/:id/edit', function($id) {
+    StrategyController::strategy_modify($id);
+});
+
+$routes->post('/strategy/:id/edit', function($id){
+    StrategyController::update($id);
+});
+
+$routes->post('/strategy/:id/destroy', function($id){
+    StrategyController::strategy_destroy($id);
 });
 
 //Klubi

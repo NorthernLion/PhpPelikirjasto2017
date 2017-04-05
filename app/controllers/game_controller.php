@@ -26,7 +26,7 @@ class GameController extends BaseController{
             Redirect::to('/game/' . $game->id, array('message' => 'Peli on lisätty kirjastoosi!'));
         }else{
 
-            View::make('game/new.html', array('errors' => $errors, 'attributes' => $game));
+            View::make('game_create.html', array('errors' => $errors, 'game' => $game));
         }
     }
 
@@ -36,10 +36,6 @@ class GameController extends BaseController{
         View::make('game_list.html', array('games' => $games));
     }
 
-    public static function game_modify($id){
-        $game = Game::find($id);
-        View::make('game/edit.html', array('attributes' => $game));
-    }
 
     public static function game_show($id){
         $game = Game::find($id);
@@ -47,37 +43,41 @@ class GameController extends BaseController{
 
         View::make('game_show.html', array('game' => $game), array('strategies' => $strategies));
     }
+    
+    public static function edit($id){
+        $game = Game::find($id);
+        View::make('game_modify.html', array('game' => $game));
+    }
 
 
-    public static function update($id){
-        $params = $_POST;
+public static function update($id){
+    $params = $_POST;
 
-        $attributes = array(
-            'id' => $id,
-            'name' => $params['name'],
+    $attributes = array(
+      'id' => $id,
+      'name' => $params['name'],
       'publisher' => $params['publisher'],
       'published' => $params['published'],
       'description' => $params['description']
     );
 
+    // Alustetaan Game-olio käyttäjän syöttämillä tiedoilla
     $game = new Game($attributes);
     $errors = $game->errors();
 
     if(count($errors) > 0){
-        View::make('game/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+      View::make('game_modify.html', array('errors' => $errors, 'game' => $game));
     }else{
-        $game->update();
+      // Kutsutaan alustetun olion update-metodia, joka päivittää pelin tiedot tietokannassa
+      $game->update();
 
-        Redirect::to('/game/' . $game->id, array('message' => 'Peliä on muokattu onnistuneesti!'));
+      Redirect::to('/game/' . $game->id, array('message' => 'Peliä on muokattu onnistuneesti!'));
     }
   }
 
 
     public static function destroy($id){
-
-        $game = new Game(array('id' => $id));
-
-        $game->destroy();
+        Game::delete($id);
 
         Redirect::to('/game', array('message' => 'Peli on poistettu onnistuneesti!'));
     }

@@ -2,7 +2,7 @@
 
 class Player extends BaseModel{
 
-    public $id, $name, $password, $admin;
+    public $id, $username, $password, $admin;
 
     public function __construct($attributes)
     {
@@ -27,7 +27,7 @@ class Player extends BaseModel{
 
             $players[] = new Player(array(
                 'id' => $row['id'],
-                'name' => $row['name'],
+                'username' => $row['username'],
                 'password' => $row['password'],
                 'admin' => $row['admin']
             ));
@@ -44,7 +44,7 @@ class Player extends BaseModel{
         if($row) {
             $player = new Player(array(
                 'id' => $row['id'],
-                'name' => $row['name'],
+                'username' => $row['username'],
                 'password' => $row['password'],
                 'admin' => $row['admin']
             ));
@@ -57,14 +57,32 @@ class Player extends BaseModel{
 
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Player(name, password, admin)) 
-        VALUES (:name, :password, :admin) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Player(username, password, admin)) 
+        VALUES (:username, :password, :admin) RETURNING id');
 
-        $query->execute(array('name' => $this->name, 'password' => $this->password, 'admin' => $this->admin));
+        $query->execute(array('username' => $this->username, 'password' => $this->password, 'admin' => $this->admin));
 
         $row = $query->fetch();
 
         $this->id = $row['id'];
+    }
+    
+    
+    public static function authenticate($username, $password) {
+        $query = DB::connection()->prepare('SELECT * FROM Player WHERE username = :username AND password = :password LIMIT 1');
+        $query->execute(array('username' => $username, 'password' => $password));
+        $row = $query->fetch();
+        
+        if ($row) {
+            $player = new Player(array (
+                'id' => $row['id'],
+                'username' => $row['username'],
+                'password' => $row['password']
+            ));
+            return $player;
+        } else {
+            return null;
+        }
     }
 
 }

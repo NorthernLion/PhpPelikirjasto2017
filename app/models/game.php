@@ -5,8 +5,8 @@ class Game extends BaseModel{
     public $id, $name, $published, $publisher, $description;
 
     public function __construct($attributes){
-        parent::construct($attributes);
-        $this->validators = array('validate_name', 'validate_published', 'validate_publisher', 'validate_description');
+        parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_published');
     }
     
     public function games() {
@@ -65,20 +65,19 @@ class Game extends BaseModel{
     
     $this->id = $row['id'];
     }
-
-    public function valdiate_name() {
-        $errors = array();
-        if($this->name == '' || $this->name == null){
-            $errors[] = 'Nimi ei saa olla tyhjä!';
-        }
-        if(strlen($this->name) < 3){
-            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
-        }
-
-        return $errors;
+    
+    
+    public function delete($id){
+        $query = DB::connection()->prepare('DELETE FROM Game WHERE id = :id');
+        $query->execute(array('id' => $id));        
     }
-
-
+    
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Game SET name = :name, published = :published, publisher = :publisher, description = :description WHERE id = :id');
+        $query->execute(array('name' => $this->name, 'published' => $this->published, 'publisher' => $this->publisher, 'description' => $this->description, 'id' => $this->id));
+        
+        $row = $query->fetch();
+    }
 
 
 

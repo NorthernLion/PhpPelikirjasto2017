@@ -20,10 +20,29 @@
       $errors = array();
 
       foreach($this->validators as $validator){
-        // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        $errors = array_merge($errors, $this->{$validator}());
       }
 
       return $errors;
     }
-
+    
+        public function validate_name() {
+        $errors = array();
+        if ($this->name == '' || $this->name == null) {
+            array_push($errors, 'Nimi ei saa olla tyhjä!');
+        }
+        if (strlen($this->name) < 3) {array_push($errors, 'Nimen pituuden tulee olla vähintään kolme merkkiä!');
+        }
+        return $errors;
+    }
+    
+    public function validate_published() {
+        $errors = array();
+        $published = DateTime::createFromFormat('Y-m-d', $this->published);
+        $dateNow = DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
+        if ($published === false) {
+            array_push($errors, 'Julkaisu vuosi pitää kirjoittaa muodossa: Vuosi-Kuukausi-Päivä');
+        }
+        return $errors;
+    }
   }

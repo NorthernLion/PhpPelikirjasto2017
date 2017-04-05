@@ -1,6 +1,7 @@
 -- Player-taulun testidata
-INSERT INTO Player (name, password) VALUES ('Kalle', 'Kalle123');
-INSERT INTO Player (name, password) VALUES ('Henri', 'Henri123');
+INSERT INTO Player (username, password) VALUES ('Kalle', 'Kalle123');
+INSERT INTO Player (username, password) VALUES ('Henri', 'Henri123');
+INSERT INTO Player (username, password) VALUES ('example', 'example1');
 -- Club taulun testidata
 INSERT INTO Club (name, created) VALUES ('KeyboardWarriors', NOW());
 INSERT INTO Club (name, created) VALUES ('BasicNerds', '1995-11-11');

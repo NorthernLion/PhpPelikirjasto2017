@@ -17,7 +17,7 @@ class PlayerController extends BaseController{
 
         $player = new Player(array(
             'id' => $params['id'],
-            'name' => $params['name'],
+            'username' => $params['username'],
             'password' => $params['password'],
             'admin' => $params['admin']
         ));
@@ -37,11 +37,11 @@ class PlayerController extends BaseController{
         $player = Player::authenticate($params['username'], $params['password']);
 
         if(!$player){
-            View::make('player/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+            View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         }else{
             $_SESSION['player'] = $player->id;
 
-            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $player->name . '!'));
+            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $player->username . '!'));
         }
     }
 }

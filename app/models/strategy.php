@@ -8,15 +8,6 @@ class Strategy extends BaseModel{
     {
         parent::__construct($attributes);
     }
-    
-    public function game() {
-        return $this->belongsTo('Game', 'id');
-    }
-    
-    public function player() {
-        return $this->belongsTo('Player', 'id');
-    }
-
 
     public static function all(){
 
