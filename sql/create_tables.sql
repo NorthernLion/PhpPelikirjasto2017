@@ -1,8 +1,7 @@
 CREATE TABLE Player(
   id SERIAL PRIMARY KEY,
   username varchar(50) NOT NULL,
-  password varchar(50) NOT NULL,
-  admin boolean DEFAULT FALSE
+  password varchar(50) NOT NULL
 );
 
 CREATE TABLE Club(
@@ -16,7 +15,7 @@ CREATE TABLE Game(
   name varchar(50) NOT NULL,
   published DATE,
   publisher varchar(50),
-  description varchar(400)
+  description varchar(10000)
 );
 
 CREATE TABLE Membership(
@@ -30,6 +29,5 @@ CREATE TABLE Strategy(
   player_id INTEGER REFERENCES Player(id),
   game_id INTEGER REFERENCES Game(id),
   name varchar(50) NOT NULL,
-  description varchar(1000),
-  published DATE
-);
+  description varchar(10000)
+); 

@@ -3,19 +3,19 @@
   class BaseController{
       
     public static function get_user_logged_in(){
-      if (isset($_SESSION['user'])) {
-        $user_id = $_SESSION['user'];
+      if (isset($_SESSION['player'])) {
+        $player_id = $_SESSION['player'];
         
-        $user = Player::find($user_id);
+        $player = Player::find($player_id);
         
-        return $user;
+        return $player;
       }
       
       return null;
     }
-
+    
     public static function check_logged_in(){
-      if (!isset($_SESSION['user'])) {
+      if (!isset($_SESSION['player'])) {
         Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
       }
     }

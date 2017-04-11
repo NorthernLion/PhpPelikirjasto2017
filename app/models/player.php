@@ -2,7 +2,7 @@
 
 class Player extends BaseModel{
 
-    public $id, $username, $password, $admin;
+    public $id, $username, $password;
 
     public function __construct($attributes)
     {
@@ -29,7 +29,6 @@ class Player extends BaseModel{
                 'id' => $row['id'],
                 'username' => $row['username'],
                 'password' => $row['password'],
-                'admin' => $row['admin']
             ));
         }
 
@@ -46,7 +45,6 @@ class Player extends BaseModel{
                 'id' => $row['id'],
                 'username' => $row['username'],
                 'password' => $row['password'],
-                'admin' => $row['admin']
             ));
 
             return $player;
@@ -57,10 +55,10 @@ class Player extends BaseModel{
 
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Player(username, password, admin)) 
-        VALUES (:username, :password, :admin) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Player(username, password)) 
+        VALUES (:username, :password) RETURNING id');
 
-        $query->execute(array('username' => $this->username, 'password' => $this->password, 'admin' => $this->admin));
+        $query->execute(array('username' => $this->username, 'password' => $this->password));
 
         $row = $query->fetch();
 
@@ -84,5 +82,9 @@ class Player extends BaseModel{
             return null;
         }
     }
+    
+    public static function login(){
+          View::make('login.html');
+    }    
 
 }

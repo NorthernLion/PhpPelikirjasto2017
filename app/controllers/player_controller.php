@@ -3,13 +3,14 @@
 class PlayerController extends BaseController{
 
     public static function player_create(){
-        View::make('player_create.html');
+        View::make('player/player_create.html');
     }
 
-    public static function player_show($id){
+    public static function player_show($id){        
+        self::check_logged_in();
         $player = Player::find($id);
 
-        View::make('player_show.html', array('attributes' => $player));
+        View::make('player/player_show.html', array('attributes' => $player));
     }
 
     public static function store(){
@@ -19,7 +20,6 @@ class PlayerController extends BaseController{
             'id' => $params['id'],
             'username' => $params['username'],
             'password' => $params['password'],
-            'admin' => $params['admin']
         ));
 
         $player->save();
@@ -37,11 +37,16 @@ class PlayerController extends BaseController{
         $player = Player::authenticate($params['username'], $params['password']);
 
         if(!$player){
-            View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+            View::make('player/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         }else{
             $_SESSION['player'] = $player->id;
 
             Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $player->username . '!'));
         }
+    }
+    public static function logout(){        
+        self::check_logged_in();
+        $_SESSION['player'] = null;
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
 }

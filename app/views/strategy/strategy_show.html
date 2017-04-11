@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{strategy.name}}</h1>
+
+<p>
+    <form method="post" action="{{base_path}}/strategy/{{strategy.id}}/destroy" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+    <th><a class="btn btn-default btn-sm" href="{{base_path}}/strategy/{{strategy.id}}/edit">Muokkaa</a></th>
+</p>
+
+<ul>
+    <li><strong>Peli:</strong><a href="{{base_path}}/game/{{strategy.game_id}}"> {{strategy.game_name}}</a></li>
+    <li><strong>Julkaisija:</strong><a href="{{base_path}}/player/{{strategy.player_id}}"> {{strategy.player_name}}</a></li>
+</ul>
+
+        
+<p>
+    {{strategy.description}}
+</p>
+{% endblock %}

@@ -3,10 +3,12 @@
 class GameController extends BaseController{
 
     public static function game_create(){
-        View::make('game_create.html');
+        self::check_logged_in();
+        View::make('game/game_create.html');
       }
 
     public static function store(){
+        self::check_logged_in();
         $params = $_POST;
 
         $game = new Game(array(
@@ -23,7 +25,7 @@ class GameController extends BaseController{
 
             $game->save();
 
-            Redirect::to('/game/' . $game->id, array('message' => 'Peli on lisätty kirjastoosi!'));
+            Redirect::to('/game/' . $game->id, array('message' => 'Peli on lisätty!'));
         }else{
 
             View::make('game_create.html', array('errors' => $errors, 'game' => $game));
@@ -33,24 +35,26 @@ class GameController extends BaseController{
     public static function game_list(){
         $games = Game::all();
 
-        View::make('game_list.html', array('games' => $games));
+        View::make('game/game_list.html', array('games' => $games));
     }
 
 
     public static function game_show($id){
         $game = Game::find($id);
-        $strategies = Strategy::findBy($id);
+        $strategies = Game::findStrategybyGame($id);
 
-        View::make('game_show.html', array('game' => $game), array('strategies' => $strategies));
+        View::make('game/game_show.html', array('game' => $game, 'strategies' => $strategies));
     }
     
     public static function edit($id){
+        self::check_logged_in();
         $game = Game::find($id);
-        View::make('game_modify.html', array('game' => $game));
+        View::make('game/game_modify.html', array('game' => $game));
     }
 
 
 public static function update($id){
+    self::check_logged_in();
     $params = $_POST;
 
     $attributes = array(
@@ -61,14 +65,12 @@ public static function update($id){
       'description' => $params['description']
     );
 
-    // Alustetaan Game-olio käyttäjän syöttämillä tiedoilla
     $game = new Game($attributes);
     $errors = $game->errors();
 
     if(count($errors) > 0){
-      View::make('game_modify.html', array('errors' => $errors, 'game' => $game));
+      View::make('game/game_modify.html', array('errors' => $errors, 'game' => $game));
     }else{
-      // Kutsutaan alustetun olion update-metodia, joka päivittää pelin tiedot tietokannassa
       $game->update();
 
       Redirect::to('/game/' . $game->id, array('message' => 'Peliä on muokattu onnistuneesti!'));
@@ -77,6 +79,7 @@ public static function update($id){
 
 
     public static function destroy($id){
+        self::check_logged_in();
         Game::delete($id);
 
         Redirect::to('/game', array('message' => 'Peli on poistettu onnistuneesti!'));

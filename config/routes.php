@@ -1,32 +1,24 @@
 <?php
 
-      $routes->get('/', function() {
-        HelloWorldController::index();
-      });
 
-      $routes->get('/hiekkalaatikko', function() {
-        HelloWorldController::sandbox();
-      });
 
-        $routes->get('/pelitvanha', function() {
-        HelloWorldController::lista();
-      });
 
-// Omat !
 
-$routes->get('/login', function(){
-    PlayerController::login();
+
+//Index
+
+$routes->get('/', function() {
+    HelloWorldController::index();
 });
-$routes->post('/login', function(){
-    PlayerController::handle_login();
+
+$routes->get('/index', function() {
+    HelloWorldController::index();
 });
-    
-    $routes->get('/index', function() {
-        HelloWorldController::index();
-    });
+
     
 
 //Peli
+
     
 $routes->post('/game_create', function(){
   GameController::store();
@@ -56,7 +48,10 @@ $routes->post('/game/:id/destroy', function($id){
     GameController::destroy($id);
 });
 
+
 //Käyttäjä
+
+
 $routes->post('/user_create', function(){
   PlayerController::store();
 });
@@ -69,13 +64,27 @@ $routes->get('/user/:id', function($id) {
     PlayerController::player_show($id);
 });
 
+$routes->get('/login', function(){
+    PlayerController::login();
+});
+
+$routes->post('/login', function(){
+    PlayerController::handle_login();
+});
+
+$routes->post('/logout', function(){
+    PlayerController::logout();
+});
+
+
 //Strategia
+
 
 $routes->post('/strategy_create', function(){
   StrategyController::store();
 });
 
-$routes->post('/strategy/new', function() {
+$routes->get('/strategy/new', function() {
     StrategyController::strategy_create();
 });
 
@@ -88,16 +97,18 @@ $routes->get('/strategy/:id', function($id) {
 });
 
 $routes->get('/strategy/:id/edit', function($id) {
-    StrategyController::strategy_modify($id);
+    StrategyController::edit($id);
 });
 
-$routes->post('/strategy/:id/edit', function($id){
+$routes->post('/strategy_modify/:id', function($id){
     StrategyController::update($id);
 });
 
+
 $routes->post('/strategy/:id/destroy', function($id){
-    StrategyController::strategy_destroy($id);
+    StrategyController::destroy($id);
 });
+
 
 //Klubi
 
@@ -111,5 +122,9 @@ $routes->get('/club/:id', function($id) {
 });
 
 
+//Jäsenyys
 
+$routes->post('/ms_create', function(){
+    MembershipController::store();
+});
 

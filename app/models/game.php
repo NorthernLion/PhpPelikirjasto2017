@@ -9,10 +9,6 @@ class Game extends BaseModel{
         $this->validators = array('validate_name', 'validate_published');
     }
     
-    public function games() {
-        return $this->hasMany('Strategy');
-    }
-
     public static function all(){
 
         $query = DB::connection()->prepare('SELECT * FROM Game');
@@ -28,8 +24,7 @@ class Game extends BaseModel{
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'published' => $row['published'],
-                'publisher' => $row['publisher'],
-                'description' => $row['description']
+                'publisher' => $row['publisher']
             ));
         }
 
@@ -57,13 +52,13 @@ class Game extends BaseModel{
     }
 
     public function save(){
-    $query = DB::connection()->prepare('INSERT INTO Game (name, published, publisher, description) VALUES (:name, :published, :publisher, :description) RETURNING id');
-    
-    $query->execute(array('name' => $this->name, 'published' => $this->published, 'publisher' => $this->publisher, 'description' => $this->description));
-    
-    $row = $query->fetch();
-    
-    $this->id = $row['id'];
+        $query = DB::connection()->prepare('INSERT INTO Game (name, published, publisher, description) VALUES (:name, :published, :publisher, :description) RETURNING id');
+
+        $query->execute(array('name' => $this->name, 'published' => $this->published, 'publisher' => $this->publisher, 'description' => $this->description));
+
+        $row = $query->fetch();
+
+        $this->id = $row['id'];
     }
     
     
@@ -78,7 +73,25 @@ class Game extends BaseModel{
         
         $row = $query->fetch();
     }
+    
+    public static function findStrategybyGame($game_id){
+        $query = DB::connection()->prepare('SELECT Strategy.id, Strategy.player_id, Strategy.name, Player.username AS player_name FROM Strategy INNER JOIN Player ON Player.id = Strategy.player_id WHERE Strategy.game_id = :game_id;');
+        $query->execute(array(':game_id' => $game_id));
+        $rows = $query->fetchAll();
+        $array = array();
 
+        foreach ($rows as $row) {
+
+            $array[] = new ArrayObject(array(
+                'name' => $row['name'],
+                'player_name' => $row['player_name'],
+                'player_id' => $row['player_id'],
+                'id' => $row['id']
+            ));
+        }
+
+        return $array;        
+    }
 
 
 }

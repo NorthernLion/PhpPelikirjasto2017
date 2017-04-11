@@ -7,7 +7,7 @@
 <p>
     {{forms.destroy_button("#{base_path}/game/#{game.id}/destroy")}}
     <th><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{game.id}}/edit">Muokkaa</a></th>
-    <button class="btn btn-success">Lisää Strategia ToBeDone (miten tietää id:n?)</button>
+    <th><a class="btn btn-success" href="{{base_path}}/strategy/new">Lisää Strategia</a></th>
 </p>
 
 <ul>
@@ -24,16 +24,14 @@
     <tr>
         <th>Strategian nimi</th>
         <th>Käyttäjän nimi</th>
-        <th>Julkaistu</th>
     </tr>
     </thead>
-
+    <h3>Pelille luodut Strategiat</h3>
     <tbody>
       {% for strategy in strategies %}        
     <tr>
         <td><a href="{{base_path}}/strategy/{{strategy.id}}">{{strategy.name}}</a></td>
-        <td><a href="{{base_path}}/user/{{strategy.player_id}}">strategy.player_id</a></td>
-        <td>{{strategy.published}}</td>
+        <td><a href="{{base_path}}/user/{{strategy.player_id}}">{{strategy.player_name}}</a></td>
     </tr>
             {% endfor %}    
     </tbody>

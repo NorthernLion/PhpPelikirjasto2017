@@ -11,7 +11,6 @@
     <thead>
     <tr>
         <th>Nimi</th>
-        <th>Julkaisuaika</th>
         <th>Peli</th>
         <th>Julkaisija</th>
     </tr>
@@ -22,9 +21,8 @@
       
     <tr>
         <td><a href="{{base_path}}/strategy/{{strategy.id}}">{{strategy.name}}</a></td>
-        <td>{{strategy.published}}</td>
-        <td><a href="{{base_path}}/game/{{strategy.game_id}}">{{strategy.game_id}}</a></td>
-        <td><a href="{{base_path}}/player/{{strategy.player_id}}">{{strategy.player_id}}</a></td>
+        <td><a href="{{base_path}}/game/{{strategy.game_id}}">{{strategy.game_name}}</a></td>
+        <td><a href="{{base_path}}/player/{{strategy.player_id}}">{{strategy.player_name}}</a></td>
     </tr>
         {% endfor %}
     </tbody>
