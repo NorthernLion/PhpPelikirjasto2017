@@ -14,8 +14,9 @@ class StrategyController extends BaseController{
 
     public static function strategy_show($id){
         $strategy = Strategy::find($id);
+        $comments = Strategy::findAllMessages($id);
 
-        View::make('strategy/strategy_show.html', array('strategy' => $strategy));
+        View::make('strategy/strategy_show.html', array('strategy' => $strategy, 'comments' => $comments));
     }
 
     public static function strategy_create(){
@@ -46,7 +47,8 @@ class StrategyController extends BaseController{
     
             
         } else {
-            View::make('strategy/strategy_create.html', array('errors' => $errors, 'strategy' => $strategy));
+            $games = Game::all();
+            View::make('strategy/strategy_create.html', array('games' => $games, 'errors' => $errors, 'strategy' => $strategy));
         }
         }
         

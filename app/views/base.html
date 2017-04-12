@@ -39,7 +39,6 @@
           <!-- Navigaation linkit -->
           <li><a href="{{base_path}}/game">Pelit</a></li>
           <li><a href="{{base_path}}/strategy">Strategiat</a></li>
-          <li><a href="{{base_path}}/club">Klubit</a></li>
         </ul>
 
 
@@ -63,6 +62,14 @@
 
     <div id="main-container">
         {{message}}
+        
+        {% if error %}
+            <div class="alert alert-danger">
+                <ul>
+                    <li>{{error}}</li>
+                </ul>
+            </div>
+        {% endif %}
 
       <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}

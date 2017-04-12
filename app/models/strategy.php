@@ -4,11 +4,9 @@ class Strategy extends BaseModel{
 
     public $id, $player_id, $game_id, $name, $description;
 
-    public function __construct($attributes)
-    {
+    public function __construct($attributes){
         parent::__construct($attributes);
-        $this->validators = array();
-    
+        $this->validators = array('validate_description', 'validate_name');
     }
 
     public static function all(){
@@ -33,6 +31,29 @@ class Strategy extends BaseModel{
 
         return $array;    
     }
+    
+    public static function findAllMessages($strategy_id) {
+        $query = DB::connection()->prepare('SELECT Message.created, Player.username, Message.description, Player.id as player_id, Message.id '
+                . 'FROM Message INNER JOIN Player on Message.player_id = Player.id WHERE Message.strategy_id = :strategy_id;');
+        $query->execute(array('strategy_id' => $strategy_id));
+        $rows = $query->fetchAll();
+        $array = array();
+
+        foreach ($rows as $row) {
+
+            $array[] = new ArrayObject(array(
+                'username' => $row['username'],
+                'description' => $row['description'],
+                'id' => $row['id'],
+                'player_id' => $row['player_id'],
+                'created' => $row['created']
+            ));
+        }
+
+        return $array;    
+    }
+        
+    
 
     public static function find($strategy_id){
         $query = DB::connection()->prepare('SELECT Strategy.id, Strategy.description, Strategy.name, Strategy.game_id, Strategy.player_id, Player.username AS
@@ -71,6 +92,8 @@ class Strategy extends BaseModel{
     
     
     public function delete($id){
+        $query = DB::connection()->prepare('DELETE FROM Message WHERE strategy_id = :id');
+        $query->execute(array('id' => $id));  
         $query = DB::connection()->prepare('DELETE FROM Strategy WHERE id = :id');
         $query->execute(array('id' => $id));        
     }

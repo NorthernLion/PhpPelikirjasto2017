@@ -110,21 +110,13 @@ $routes->post('/strategy/:id/destroy', function($id){
 });
 
 
-//Klubi
+//Kommentit
 
-
-$routes->get('/club', function() {
-    ClubController::club_list();
-});
-
-$routes->get('/club/:id', function($id) {
-    ClubController::club_show($id);
+$routes->post('/message_create', function(){
+  MessageController::store();
 });
 
 
-//Jäsenyys
-
-$routes->post('/ms_create', function(){
-    MembershipController::store();
+$routes->post('/message/:id/destroy', function($id){
+    MessageController::destroy($id);
 });
-

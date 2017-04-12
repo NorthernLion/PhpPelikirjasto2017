@@ -52,7 +52,27 @@ class Player extends BaseModel{
 
         return null;
     }
+    
+    public static function findStrategiesBy($player_id){
+        $query = DB::connection()->prepare('SELECT Strategy.name, Strategy.id, Game.id AS '
+                . 'game_id, Game.name AS game_name FROM Strategy INNER JOIN Game '
+                . 'ON Strategy.game_id = Game.id WHERE Strategy.player_id = :player_id');
+        $query->execute(array('player_id' => $player_id));
+        $rows = $query->fetchAll();
+        $array = array();
 
+        foreach ($rows as $row) {
+
+            $array[] = new ArrayObject(array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'game_id' => $row['game_id'],
+                'game_name' => $row['game_name']
+            ));
+        }
+
+        return $array;    
+    }
 
     public function save(){
         $query = DB::connection()->prepare('INSERT INTO Player(username, password)) 

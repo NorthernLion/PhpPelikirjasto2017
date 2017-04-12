@@ -43,6 +43,15 @@
         if ($published === false) {
             array_push($errors, 'Julkaisu vuosi pitää kirjoittaa muodossa: Vuosi-Kuukausi-Päivä');
         }
+        if ($published)
+        return $errors;
+    }
+    
+    public function validate_description() {
+        $errors = array();
+        if ($this->description == '' || $this->description == null) {
+            array_push($errors, 'Kuvaus ei saa olla tyhjä!');
+        }
         return $errors;
     }
   }

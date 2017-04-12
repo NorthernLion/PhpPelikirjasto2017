@@ -27,6 +27,7 @@
     <div class="form-group">
       <label>Peli</label>
       <select class="form-control" name="game_id">
+          <option selected value="{{strategy.game_id}}"></option>
         {% for game in games %}
           <option value="{{game.id}}">{{game.name}}</option>
         {% endfor %}

@@ -9,8 +9,9 @@ class PlayerController extends BaseController{
     public static function player_show($id){        
         self::check_logged_in();
         $player = Player::find($id);
+        $strategies = Player::findStrategiesBy($id);
 
-        View::make('player/player_show.html', array('attributes' => $player));
+        View::make('player/player_show.html', array('player' => $player, 'strategies' => $strategies));
     }
 
     public static function store(){
