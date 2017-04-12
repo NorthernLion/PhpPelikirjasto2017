@@ -9,11 +9,8 @@ class Player extends BaseModel{
         parent::__construct($attributes);
     }
     
-    public function players() {
-        return $this->hasMany('Strategy');
-    }
-    
 
+// Palauttaa kaikki arvot Player taulusta
     public static function all(){
 
         $query = DB::connection()->prepare('SELECT * FROM Player');
@@ -34,7 +31,7 @@ class Player extends BaseModel{
 
         return $players;
     }
-
+//Etsii pelaajan ID:llä
     public static function find($id){
         $query = DB::connection()->prepare('SELECT * FROM Player WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
@@ -52,7 +49,7 @@ class Player extends BaseModel{
 
         return null;
     }
-    
+ //Etsii Strategiat jotka on tehnyt tietty pelaaja
     public static function findStrategiesBy($player_id){
         $query = DB::connection()->prepare('SELECT Strategy.name, Strategy.id, Game.id AS '
                 . 'game_id, Game.name AS game_name FROM Strategy INNER JOIN Game '
@@ -73,7 +70,7 @@ class Player extends BaseModel{
 
         return $array;    
     }
-
+//Tallentaa annetun pelaajan tietokantaan
     public function save(){
         $query = DB::connection()->prepare('INSERT INTO Player(username, password)) 
         VALUES (:username, :password) RETURNING id');
@@ -85,7 +82,7 @@ class Player extends BaseModel{
         $this->id = $row['id'];
     }
     
-    
+    //Tarkistaa löytyykö annettu käyttäjänimi, salasana combo tietokannasta
     public static function authenticate($username, $password) {
         $query = DB::connection()->prepare('SELECT * FROM Player WHERE username = :username AND password = :password LIMIT 1');
         $query->execute(array('username' => $username, 'password' => $password));
@@ -102,9 +99,4 @@ class Player extends BaseModel{
             return null;
         }
     }
-    
-    public static function login(){
-          View::make('login.html');
-    }    
-
 }

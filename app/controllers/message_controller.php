@@ -3,7 +3,7 @@
 class MessageController extends BaseController{
 
 
-    
+    //Uuden viestin tallentaminen
     public static function store(){
         self::check_logged_in();
         $params = $_POST;
@@ -16,7 +16,7 @@ class MessageController extends BaseController{
 
         $comment = new Message($comment);
         $errors = $comment->errors();
-
+    //Jos virheitä ei talleneta
         if(count($errors) == 0){
 
             $comment->save();
@@ -29,7 +29,7 @@ class MessageController extends BaseController{
     }
 
 
-
+// Viestin tuohoaminen
     public static function destroy($id){
         self::check_logged_in();
         $comment = Message::find($id);

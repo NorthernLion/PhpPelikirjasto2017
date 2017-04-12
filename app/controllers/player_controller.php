@@ -2,18 +2,21 @@
 
 class PlayerController extends BaseController{
 
+    //Rekisteröinti sivun renderöinti
     public static function player_create(){
         View::make('player/player_create.html');
     }
 
+    //Pelaajan sivun näyttäminen
     public static function player_show($id){        
         self::check_logged_in();
         $player = Player::find($id);
+        //Etsitään kyseisen pelaajan strategiat
         $strategies = Player::findStrategiesBy($id);
 
         View::make('player/player_show.html', array('player' => $player, 'strategies' => $strategies));
     }
-
+//Pelaajan tallentaminen !! MUOKKAA !!
     public static function store(){
         $params = $_POST;
 
@@ -25,16 +28,16 @@ class PlayerController extends BaseController{
 
         $player->save();
 
-        Redirect::to('/player/' . $player->id, array('message' => 'Käyttäjä luotu'));
+        Redirect::to('/', array('message' => 'Käyttäjä luotu'));
     }
-
+// Login sivun renderöinti
     public static function login(){
         View::make('player/login.html');
     }
-
+//Kirjautumisen käsittelijä
     public static function handle_login(){
         $params = $_POST;
-
+        //katsoo täsmäävätkö username ja salasana
         $player = Player::authenticate($params['username'], $params['password']);
 
         if(!$player){
@@ -45,6 +48,8 @@ class PlayerController extends BaseController{
             Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $player->username . '!'));
         }
     }
+
+    //Ulos kirjautumisen käsittelijä
     public static function logout(){        
         self::check_logged_in();
         $_SESSION['player'] = null;

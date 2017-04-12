@@ -33,13 +33,16 @@
         }
         if (strlen($this->name) < 3) {array_push($errors, 'Nimen pituuden tulee olla vähintään kolme merkkiä!');
         }
+        if (strlen($this->name) > 50) {array_push($errors, 'Nimen pituuden tulee olla enintään 50 merkkiä!');
+
+        }
+
         return $errors;
     }
     
     public function validate_published() {
         $errors = array();
         $published = DateTime::createFromFormat('Y-m-d', $this->published);
-        $dateNow = DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
         if ($published === false) {
             array_push($errors, 'Julkaisu vuosi pitää kirjoittaa muodossa: Vuosi-Kuukausi-Päivä');
         }
@@ -51,6 +54,9 @@
         $errors = array();
         if ($this->description == '' || $this->description == null) {
             array_push($errors, 'Kuvaus ei saa olla tyhjä!');
+        }
+        if (strlen($this->description) > 10000) {array_push($errors, 'Kuvaus on liian pitkä!');
+
         }
         return $errors;
     }

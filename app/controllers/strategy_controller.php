@@ -1,30 +1,36 @@
 <?php
 
 class StrategyController extends BaseController{
+
+    //Renderöi listaus sivun
     public static function strategy_list(){
         $strategies = Strategy::all();
 
         View::make('strategy/strategy_list.html', array('strategies' => $strategies), compact('strategies'));
     }
 
+    //Renderöi muokkaus sivun
     public static function strategy_modify($id){
         self::check_logged_in();
         View::make('strategy/strategy_modify.html');
     }
 
+    //Renderöi strategian näyttösivun
     public static function strategy_show($id){
         $strategy = Strategy::find($id);
+        //Etsii kaikki strategiaan liittyvät viestit
         $comments = Strategy::findAllMessages($id);
 
         View::make('strategy/strategy_show.html', array('strategy' => $strategy, 'comments' => $comments));
     }
-
+    //Renderöi strategian luonti sivun
     public static function strategy_create(){
         self::check_logged_in();
         $games = Game::all();
         View::make('strategy/strategy_create.html', array('games' => $games));
     }
 
+    //Tallentaa uuden strategian
     public static function store(){
         self::check_logged_in();
         $params = $_POST;
@@ -39,7 +45,8 @@ class StrategyController extends BaseController{
         $strategy = new Strategy($strategy);
         self::check_logged_in();
         $errors = $strategy->errors();
-        
+
+        //Jos ei virheitä tallentaa, muuten ei
         if(count($errors) == 0) {
             
             $strategy->save();
@@ -51,14 +58,14 @@ class StrategyController extends BaseController{
             View::make('strategy/strategy_create.html', array('games' => $games, 'errors' => $errors, 'strategy' => $strategy));
         }
         }
-        
+        //Renderöi muokkaus sivun
     public static function edit($id){
         self::check_logged_in();
         $strategy = Strategy::find($id);
         View::make('strategy/strategy_modify.html', array('strategy' => $strategy));
     }
 
-
+//Tallentaa muokatun strategian
 public static function update($id){
     self::check_logged_in();
     $params = $_POST;
@@ -73,7 +80,7 @@ public static function update($id){
 
     $strategy = new Strategy($attributes);
     $errors = $strategy->errors();
-
+//Jos ei virheitä
     if(count($errors) > 0){
       View::make('strategy/strategy_modify.html', array('errors' => $errors, 'strategy' => $strategy));
     }else{
@@ -83,7 +90,7 @@ public static function update($id){
     }
   }
 
-
+//Tuhoaa Strategian
     public static function destroy($id){
         self::check_logged_in();
         Strategy::delete($id);

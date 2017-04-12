@@ -6,9 +6,10 @@ class Strategy extends BaseModel{
 
     public function __construct($attributes){
         parent::__construct($attributes);
+        //Validoi kuvauksen ja strategian nimen
         $this->validators = array('validate_description', 'validate_name');
     }
-
+// L
     public static function all(){
         $query = DB::connection()->prepare('SELECT Strategy.id, Strategy.name, Strategy.game_id, Strategy.player_id, Player.username AS
             player_name, Game.name AS game_name FROM Strategy INNER JOIN Player ON Strategy.player_id = Player.id
