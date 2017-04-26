@@ -9,9 +9,11 @@
 Järjestelmän ideana on tarjota lautapelifanaatikoille alusta, jolla lisätä omat suosikkipelinsä ja strategiansa nettisivulle sekä kommentoida muiden strategioita. Sivu vaatii kirjautumisen, jotta suurinta osaa sen ominaisuuksista voi käyttää. Jokainen kirjautunut käyttäjä voi luoda kaikille näkyviä strategioita ja viestejä sekä lisätä lautapelin tietokantaan. He pystyvät myös muokkaamaan ja poistamaan itse luomiaan strategioita ja poistamaan viestejä. Pelien poisto- ja muokkausoikeus on vain Adminilla. Tämän lisäksi vain Admin voi poistaa kaikkien viestejä ja strategioita. Nettisivu on toteutettu PHP-kielellä käyttäen PostgreSQL-tietokantaa laitoksen user-palvelimen alla. Ohjelmisto luonnollisesti vaatii tietyn tietokannan eikä toimi satunnaisella tietokannalla.
 
 Käyttäjätunnus ja salasana
+
 Admin
 * Käyttäjätunnus: example
 * salasana: example1
+
 User
 * Käyttäjätunnus: Kalle
 * salasana: Kalle123
