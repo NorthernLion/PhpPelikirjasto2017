@@ -33,9 +33,15 @@ class MessageController extends BaseController{
     public static function destroy($id){
         self::check_logged_in();
         $comment = Message::find($id);
-        Message::delete($id);
+        
+        if (!self::same_as_logged_in($comment->player_id) && !self::is_admin()) {
+            Redirect::to('/strategy/' . $comment->strategy_id, array('message' => 'Et voi poistaa muiden viestejä'));
+        } else {
+            Message::delete($id);
+            Redirect::to('/strategy/' . $comment->strategy_id, array('message' => 'Viesti on poistettu onnistuneesti!'));
+        }
 
-        Redirect::to('/strategy/' . $comment->strategy_id, array('message' => 'Viesti on poistettu onnistuneesti!'));
+        
     }
 
 }

@@ -8,11 +8,11 @@
 //Index
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    GameController::index();
 });
 
 $routes->get('/index', function() {
-    HelloWorldController::index();
+    GameController::index();
 });
 
     

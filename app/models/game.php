@@ -7,7 +7,7 @@ class Game extends BaseModel{
     public function __construct($attributes){
         parent::__construct($attributes);
         //Validoi nimen, julkaisupvm ja kuvauksen
-        $this->validators = array('validate_name', 'validate_published', 'validate_description');
+        $this->validators = array('validate_name', 'validate_description', 'validate_published');
     }
     //Valitsee kaikki pelit Game taulusta
     public static function all(){
@@ -64,9 +64,14 @@ class Game extends BaseModel{
     }
     
     //Tuhoaa pelin tietokannasta
-    public function delete($id){
+    public function delete($game_id){
+        $strategies = self::findStrategybyGame($game_id);
+        foreach ($strategies as $strategy) {
+            Strategy::delete($strategy->offsetGet('id'));
+        }
         $query = DB::connection()->prepare('DELETE FROM Game WHERE id = :id');
-        $query->execute(array('id' => $id));        
+        $query->execute(array('id' => $game_id));
+
     }
     // päivittää pelin tiedon tietokannassa
     public function update() {

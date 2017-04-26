@@ -5,7 +5,7 @@
 
 <p>
     {{forms.destroy_button("#{base_path}/strategy/#{strategy.id}/destroy")}}
-    <th><a class="btn btn-default btn-sm" href="{{base_path}}/strategy/{{strategy.id}}/edit">Muokkaa</a></th>
+<th><a class="btn btn-default btn-sm" href="{{base_path}}/strategy/{{strategy.id}}/edit">Muokkaa</a></th>
 </p>
 
 <ul>
@@ -13,30 +13,40 @@
     <li><strong>Julkaisija:</strong><a href="{{base_path}}/user/{{strategy.player_id}}"> {{strategy.player_name}}</a></li>
 </ul>
 
-        
+
 <p>
     {{strategy.description}}
 </p>
 
-    {% for comment in comments %}
-      
+{% for comment in comments %}
 
-        <a href="{{base_path}}/user/{{comment.player_id}}">{{comment.username}}</a>
-        on {{comment.created}}
-        {{forms.destroy_button("#{base_path}/message/#{comment.id}/destroy")}}
-    
-        <textarea class="form-control" name="description" readonly>{{comment.description}}</textarea>
 
-    {% endfor %}
+<a href="{{base_path}}/user/{{comment.player_id}}">{{comment.username}}</a>
+on {{comment.created}}
+{{forms.destroy_button("#{base_path}/message/#{comment.id}/destroy")}}
 
-    
+<textarea class="form-control" name="description" readonly>{{comment.description}}</textarea>
+
+{% endfor %}
+<br>
+
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <form method="post" action="{{base_path}}/message_create">
     <div class="form-group">
-      <label>Kommentti</label>
-      <textarea class="form-control" name="description"></textarea>
-      <input name="strategy_id" value="{{strategy.id}}" type="hidden">
-      <input name="player_id" value="{{user_logged_in.id}}" type="hidden">
-      <button type="submit" class="btn btn-primary">Lähetä</button>
+        <label>Kommentti</label>
+        <textarea class="form-control" name="description"></textarea>
+        <input name="strategy_id" value="{{strategy.id}}" type="hidden">
+        <input name="player_id" value="{{user_logged_in.id}}" type="hidden">
+        <button type="submit" class="btn btn-primary">Lähetä</button>
     </div>
 </form>
 {% endblock %}

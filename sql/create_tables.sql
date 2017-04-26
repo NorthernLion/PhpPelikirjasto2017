@@ -1,7 +1,8 @@
 CREATE TABLE Player(
   id SERIAL PRIMARY KEY,
   username varchar(50) NOT NULL,
-  password varchar(50) NOT NULL
+  password varchar(50) NOT NULL,
+  owner boolean DEFAULT FALSE
 );
 
 CREATE TABLE Game(

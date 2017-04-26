@@ -1,7 +1,7 @@
 -- Player-taulun testidata
 INSERT INTO Player (username, password) VALUES ('Kalle', 'Kalle123');
 INSERT INTO Player (username, password) VALUES ('Henri', 'Henri123');
-INSERT INTO Player (username, password) VALUES ('example', 'example1');
+INSERT INTO Player (username, password, owner) VALUES ('example', 'example1', true);
 -- Game taulun testidata
 INSERT INTO Game (name, published,  publisher, description) VALUES ('Ristinolla', '2015-11-11', 'Mark', 'Kappaleen kukkasmaa noutamaan kun jaa toivotaan kulettaja. No tyttarensa nuottikota he venhettaan et. Osaamatta rahasumma ryostavat ne se en. Rihmoihin menemista et toivotaan arentinsa antautuen no ja. Nyt omille viskia litraa saa mereen voi jaa kengat. En se eniten vuotta heitti ne. Aina meni itse siis mita kun tama nuo nyt. Aika he ei ne vaan naki et sina pysy. 
 

@@ -2,11 +2,11 @@
 
 class Player extends BaseModel{
 
-    public $id, $username, $password;
+    public $id, $username, $password, $owner;
 
-    public function __construct($attributes)
-    {
+    public function __construct($attributes){
         parent::__construct($attributes);
+        $this->validators = array('validate_password', 'validate_username');
     }
     
 
@@ -42,6 +42,7 @@ class Player extends BaseModel{
                 'id' => $row['id'],
                 'username' => $row['username'],
                 'password' => $row['password'],
+                'owner' => $row['owner'],
             ));
 
             return $player;
@@ -72,7 +73,7 @@ class Player extends BaseModel{
     }
 //Tallentaa annetun pelaajan tietokantaan
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Player(username, password)) 
+        $query = DB::connection()->prepare('INSERT INTO Player (username, password) 
         VALUES (:username, :password) RETURNING id');
 
         $query->execute(array('username' => $this->username, 'password' => $this->password));
